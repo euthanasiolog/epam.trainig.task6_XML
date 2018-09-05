@@ -5,6 +5,14 @@ package parser;
  */
 public class XMLParserBuilderFactory {
     public XMLParserBuilder getXMLParserBuilder (BuilderType builderType){
+        switch (builderType){
+            case DOM:
+                return new DOMBuilder();
+            case SAX:
+                return new SAXBuilder();
+            case STAX:
+                return new StAXBuilder();
+        }
         return null;
     }
 }

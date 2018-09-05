@@ -2,7 +2,7 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Card"
         xmlns:crd="http://www.example.org/Card"
         elementFormDefault="qualified">
-<element name="old-cards">
+<element name="oldCards">
     <complexType>
         <sequence>
             <element name="card" type="crd:card" minOccurs="2" maxOccurs="unbounded"/>
@@ -20,7 +20,7 @@
             <element name="thema" type="crd:thema"/>
         </sequence>
         <attribute name="send" type="boolean" use="required"/>
-        <attribute name="date-of-send" type="date"/>
+        <attribute name="dateOfSend" type="date" use="optional"/>
         <attribute name="valuable" use="optional">
             <simpleType>
                 <restriction base="string">
@@ -34,14 +34,14 @@
 
     <complexType name="person">
         <sequence>
-        <element name="first-name">
+        <element name="firstName">
             <simpleType>
                 <restriction base="string">
                     <pattern value="[A-Z]{1}[a-z]{2,20}"/>
                 </restriction>
             </simpleType>
         </element>
-        <element name="last-name">
+        <element name="lastName">
             <simpleType>
                 <restriction base="string">
                     <pattern value="[A-Z]{1}[a-z]{2,30}"/>
@@ -66,17 +66,17 @@
         </restriction>
     </simpleType>
 
-    <complexType name="congratulatory-card">
+    <complexType name="congratulatoryCard">
         <complexContent>
             <extension base="crd:card">
                 <sequence>
-                    <element name="destination-name" type="crd:person"/>
+                    <element name="destinationName" type="crd:person"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
 
-    <complexType name="promotion-card">
+    <complexType name="promotionCard">
         <complexContent>
             <extension base="crd:card">
                 <attribute name="company" use="required" type="string"/>
@@ -84,7 +84,7 @@
         </complexContent>
     </complexType>
 
-    <complexType name="regular-card">
+    <complexType name="regularCard">
         <complexContent>
             <extension base="crd:card">
                 <attribute name="price" type="double" use="required"/>
@@ -93,7 +93,7 @@
     </complexType>
 
     <element name="card" type="crd:card" abstract="true"/>
-    <element name="congr-card" type="crd:congratulatory-card" substitutionGroup="crd:card"/>
-    <element name="prom-card" type="crd:promotion-card" substitutionGroup="crd:card"/>
-    <element name="reg-card" type="crd:regular-card" substitutionGroup="crd:card"/>
+    <element name="congrCard" type="crd:congratulatoryCard" substitutionGroup="crd:card"/>
+    <element name="promCard" type="crd:promotionCard" substitutionGroup="crd:card"/>
+    <element name="regCard" type="crd:regularCard" substitutionGroup="crd:card"/>
 </schema>
